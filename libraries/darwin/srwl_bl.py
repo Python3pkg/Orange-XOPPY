@@ -7,7 +7,7 @@
 # v 0.02
 #############################################################################
 
-from __future__ import print_function #Python 2.7 compatibility
+ #Python 2.7 compatibility
 from srwlib import *
 from uti_plot import *
 import optparse

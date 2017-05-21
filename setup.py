@@ -121,4 +121,4 @@ if __name__ == '__main__':
                 #    os.remove(site_packages_dir + "/orangecontrib/xoppy/widgets/optics/xpower.py")
 
     except Exception as exception:
-        print(str(exception))
+        print((str(exception)))

@@ -17,7 +17,7 @@ def writeJson(bl,file_name='tmp.json',titles=None,flags=None):
     list_variable_names = []
     print ("-----------------------------------------------------")
     for indx,key in enumerate(bl2):
-        print (">>>>>>>>>>> %s = %s ; %s " % (key,bl2[key],titles[indx]) )
+        print((">>>>>>>>>>> %s = %s ; %s " % (key,bl2[key],titles[indx]) ))
         list_variable_names.append(key.upper())
         BL2[key.upper()] = bl2[key]
     print ("-----------------------------------------------------")
@@ -27,7 +27,7 @@ def writeJson(bl,file_name='tmp.json',titles=None,flags=None):
     f = open(file_name,'w')
     f.write(json_string)
     f.close()
-    print(">>> File %s written to disk"%(file_name))
+    print((">>> File %s written to disk"%(file_name)))
 
 
 
@@ -44,7 +44,7 @@ def writeJson(bl,file_name='tmp.json',titles=None,flags=None):
     json.dump(flags,f)
 
     f.close()
-    print(">>> File %s written to disk"%(file_name+'.ext'))
+    print((">>> File %s written to disk"%(file_name+'.ext')))
     
     
 #

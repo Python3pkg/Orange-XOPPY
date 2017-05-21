@@ -2,7 +2,7 @@
 # SRWLib for Python v 0.07
 #############################################################################
 
-from __future__ import print_function #Python 2.7 compatibility
+ #Python 2.7 compatibility
 import srwlib.srwlpy as srwl
 from array import *
 from math import *

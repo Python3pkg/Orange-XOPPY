@@ -21,7 +21,7 @@ def read_json(json_name):
     json_text = open(json_name).read()
     key_order = [mo.group('name') for mo in re_dict_entry.finditer(json_text)]
     json_dict = eval(json_text)
-    json = sorted(json_dict.items(), key=lambda x: key_order.index(x[0]))
+    json = sorted(list(json_dict.items()), key=lambda x: key_order.index(x[0]))
     #print(json)
     #json_lowercase = dict((k.lower(), v) for k, v in json.iteritems())
     json_lowercase = json
@@ -30,10 +30,10 @@ def read_json(json_name):
 if __name__ == "__main__":
     a = read_json("IC_Lens.json")
     for i,j in a:
-        print("--- %s   %s   "%(i,j))
+        print(("--- %s   %s   "%(i,j)))
     b = read_json("BC_PerfectCrystal.json")
     for i,j in b:
-        print("--- %s   %s   "%(i,j))
+        print(("--- %s   %s   "%(i,j)))
 
 
 
@@ -127,11 +127,11 @@ def main():
     py_name =  base + ".py"
     calc_name = "bl_glossary_template.py"
     if os.path.exists(py_name):
-        print("file overwritten: "+py_name+"\n")
+        print(("file overwritten: "+py_name+"\n"))
     else:
-        print("file written: "+py_name+"\n")
+        print(("file written: "+py_name+"\n"))
     if os.path.exists(calc_name):
-        print("appended to file: "+calc_name+"\n")
+        print(("appended to file: "+calc_name+"\n"))
 
     json = read_json(json_name)
     widget_name = base
@@ -150,18 +150,18 @@ def main():
     for i,j in json:
         if i == "__labels": 
             labels = j
-            print(">   %d labels found. \n "%(len(labels)))
+            print((">   %d labels found. \n "%(len(labels))))
         elif i == "__flags": 
             flags = j
-            print(">   %d flags found. \n "%(len(flags)))
+            print((">   %d flags found. \n "%(len(flags))))
         elif i == "__name": 
             name = j
-            print(">   found name %s: \n "%(name))
+            print((">   found name %s: \n "%(name)))
         else:
             if i[:2] != "__": 
                 kk += 1
-                print(">   found entry number %d:  %s \n "%(kk,i))
-    print(">   found entries (without __) %d: \n "%(kk))
+                print((">   found entry number %d:  %s \n "%(kk,i)))
+    print((">   found entries (without __) %d: \n "%(kk)))
 
     open(py_name, "wt").write(widget_template.format_map(vars()))
     #open(calc_name, "a").write(calc_template.format_map(vars()))

@@ -139,7 +139,7 @@ class PyListModel(QAbstractListModel):
     def setItemData(self, index, data):
         data = dict(data)
         with signal_blocking(self):
-            for role, value in data.items():
+            for role, value in list(data.items()):
                 if role == Qt.EditRole and \
                         self._is_index_valid_for(index, self):
                     self[index.row()] = value
@@ -266,7 +266,7 @@ class PyListModel(QAbstractListModel):
         indices = _argsort(self._list, *args, **kwargs)
         lst = [self._list[i] for i in indices]
         other = [self._other_data[i] for i in indices]
-        for i, new_l, new_o in enumerate(zip(lst, other)):
+        for i, new_l, new_o in enumerate(list(zip(lst, other))):
             self._list[i] = new_l
             self._other_data[i] = new_o
         self.dataChanged.emit(self.index(0), self.index(len(self) - 1))
@@ -353,7 +353,7 @@ class VariableListModel(PyListModel):
         text = ""
         if var.attributes:
             items = [(safe_text(key), safe_text(value))
-                     for key, value in var.attributes.items()]
+                     for key, value in list(var.attributes.items())]
             labels = list(map("%s = %s".__mod__, items))
             text += "<br/>Variable Labels:<br/>"
             text += "<br/>".join(labels)

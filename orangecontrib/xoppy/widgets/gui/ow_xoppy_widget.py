@@ -111,7 +111,7 @@ class XoppyWidget(widget.OWWidget):
 
     def initializeTabs(self):
         size = len(self.tab)
-        indexes = range(0, size)
+        indexes = list(range(0, size))
 
         for index in indexes:
             self.tabs.removeTab(size-1-index)
@@ -462,7 +462,7 @@ class XoppyWidget(widget.OWWidget):
 
         if len(sf) == 1:
             #load spec file with one scan, # is comment
-            print("Loading file:  ", spec_file_name)
+            print(("Loading file:  ", spec_file_name))
             out = numpy.loadtxt(spec_file_name)
             if len(out) == 0 : raise Exception("Calculation gave no results (empty data)")
 

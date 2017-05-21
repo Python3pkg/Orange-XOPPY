@@ -20,7 +20,7 @@ pl.ioff()
 import time, os, sys
 
 def enum(*sequential, **named):
-    enums = dict(zip(sequential, range(len(sequential))), **named)
+    enums = dict(list(zip(sequential, list(range(len(sequential))))), **named)
     return type('Enum', (), enums)
 
 def __plot_1D__(ar1d, x_range, labels, fig, typ=111):

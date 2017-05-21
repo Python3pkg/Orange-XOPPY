@@ -34,7 +34,7 @@ def write_spec_file(file_out,data,titles,scan_title=""):
     for i in range(data.shape[1]):
         f.write(('%g '*(data.shape[0])+'\n')%( tuple(data[:,i]) ))
     f.close()
-    print("File written to disk: %s"%file_out)
+    print(("File written to disk: %s"%file_out))
 
 def parse_formula(formula): # included now in xraylib, so not used but kept for other possible uses
     """
@@ -65,7 +65,7 @@ def parse_formula(formula): # included now in xraylib, so not used but kept for 
     mweight = 0.0
     for i in range(len(fatomic)):
         mweight += atomic_weight[i] * fatomic[i]
-    print("Molecular weight: ",mweight)
+    print(("Molecular weight: ",mweight))
 
     for i in range(len(massFractions)):
         massFractions[i] /= mweight
@@ -309,10 +309,10 @@ def f1f2_calc_mix(descriptor,energy,theta=3.0e-3,F=0,density=None,rough=0.0):
     zetas = Zarray["Elements"]
     weights = numpy.array(Zarray["nAtoms"])
     atwt = Zarray["molarMass"]
-    print("molarMass: %g"%atwt)
+    print(("molarMass: %g"%atwt))
 
 
-    print("f1f2_calc_mix: Zs: ",zetas," n: ",weights)
+    print(("f1f2_calc_mix: Zs: ",zetas," n: ",weights))
 
     f1 = numpy.zeros_like(energy)
     f2 = numpy.zeros_like(energy)
@@ -477,7 +477,7 @@ def cross_calc_mix(descriptor,energy,calculate=0,unit=None,parse_or_nist=0,densi
             nist_compound = xraylib.GetCompoundDataNISTByName(descriptor)
             density = nist_compound["density"]
 
-    print("cross_calc_mix: Using density %g g/cm3"%density)
+    print(("cross_calc_mix: Using density %g g/cm3"%density))
     tmp = numpy.zeros_like(energy)
     tmp2 = numpy.zeros_like(energy)
 
@@ -542,7 +542,7 @@ def xpower_calc(energies=numpy.linspace(1000.0,50000.0,100),source=numpy.ones(10
             rho = float(dens[i])
         except:
             rho = xraylib.ElementDensity(xraylib.SymbolToAtomicNumber(substance[i]))
-            print("Density for %s: %g g/cm3"%(substance[i],rho))
+            print(("Density for %s: %g g/cm3"%(substance[i],rho)))
 
         dens[i] = rho
 
@@ -684,7 +684,7 @@ def xpower_calc(energies=numpy.linspace(1000.0,50000.0,100),source=numpy.ones(10
                 f.write((" %e "*ncol+"\n")%(tuple(outArray[:,i].tolist())))
 
         f.close()
-        print("File written to disk: " + output_file)
+        print(("File written to disk: " + output_file))
 
     return {"data":outArray,"labels":outColTitles,"info":txt}
 
@@ -979,14 +979,14 @@ def bragg_calc(descriptor="Si",hh=1,kk=1,ll=1,temper=1.0,emin=5000.0,emax=15000.
     itest = 0
     if itest:
 
-        print ("  Unit cell dimensions are %f %f %f" % (cryst['a'],cryst['b'],cryst['c']))
-        print ("  Unit cell angles are %f %f %f" % (cryst['alpha'],cryst['beta'],cryst['gamma']))
-        print ("  Unit cell volume is %f A^3" % volume )
+        print(("  Unit cell dimensions are %f %f %f" % (cryst['a'],cryst['b'],cryst['c'])))
+        print(("  Unit cell angles are %f %f %f" % (cryst['alpha'],cryst['beta'],cryst['gamma'])))
+        print(("  Unit cell volume is %f A^3" % volume ))
         print ("  Atoms at:")
         print ("     Z  fraction    X        Y        Z")
         for i in range(cryst['n_atom']):
             atom =  cryst['atom'][i]
-            print ("    %3i %f %f %f %f" % (atom['Zatom'], atom['fraction'], atom['x'], atom['y'], atom['z']) )
+            print(("    %3i %f %f %f %f" % (atom['Zatom'], atom['fraction'], atom['x'], atom['y'], atom['z']) ))
         print ("  ")
 
     volume = volume*1e-8*1e-8*1e-8 # in cm^3
@@ -1109,7 +1109,7 @@ def bragg_calc(descriptor="Si",hh=1,kk=1,ll=1,temper=1.0,emin=5000.0,emax=15000.
     if fileout != None:
         with open(fileout,"w") as f:
             f.write(txt)
-            print("File written to disk: %s" % fileout)
+            print(("File written to disk: %s" % fileout))
 
     return output_dictionary
 
@@ -1491,12 +1491,12 @@ def mare_calc(descriptor,H,K,L,HMAX,KMAX,LMAX,FHEDGE,DISPLAY,lambda1,deltalambda
     intMain = lorentz(bragg_angle)*(fhMain**2)
 
     if verbose:
-        print('Main reflection d-spacing [A]: ',fhInp["dspacing"]*1e8)
-        print('Main reflection 1/2d=sin(theta)/lambda: ',1.0/(2*fhInp["dspacing"]*1e8))
-        print('Main reflection Bragg angle (using lambda Umweg) [DEG]: ',outInt["THETA"]*180/numpy.pi)
-        print('Main reflection Lorentz: ',lorentz(outInt["THETA"]*180/numpy.pi))
-        print('Main reflection fh (real part): ',fhMain)
-        print('Main reflection intensity: ',intMain)
+        print(('Main reflection d-spacing [A]: ',fhInp["dspacing"]*1e8))
+        print(('Main reflection 1/2d=sin(theta)/lambda: ',1.0/(2*fhInp["dspacing"]*1e8)))
+        print(('Main reflection Bragg angle (using lambda Umweg) [DEG]: ',outInt["THETA"]*180/numpy.pi))
+        print(('Main reflection Lorentz: ',lorentz(outInt["THETA"]*180/numpy.pi)))
+        print(('Main reflection fh (real part): ',fhMain))
+        print(('Main reflection intensity: ',intMain))
     #
     # ;
     # ; creates abscissas for spaghettis
@@ -1508,7 +1508,7 @@ def mare_calc(descriptor,H,K,L,HMAX,KMAX,LMAX,FHEDGE,DISPLAY,lambda1,deltalambda
     # ;
     out = numpy.zeros((18,15000))
     ngood = 0
-    print("MARE: loop over %d reflections..."%(hh.size*kk.size*ll.size))
+    print(("MARE: loop over %d reflections..."%(hh.size*kk.size*ll.size)))
 
     norm = lambda vector: numpy.sqrt(vector[0]**2+vector[1]**2+vector[2]**2)
 
@@ -1517,7 +1517,7 @@ def mare_calc(descriptor,H,K,L,HMAX,KMAX,LMAX,FHEDGE,DISPLAY,lambda1,deltalambda
         for ik in range(kk.size):
             for il in range(ll.size):
                 ijk += 1
-                if verbose: print("\n-------------%d-------------,hkl: %d %d %d"%(ijk,hh[ih],kk[ik],ll[il]))
+                if verbose: print(("\n-------------%d-------------,hkl: %d %d %d"%(ijk,hh[ih],kk[ik],ll[il])))
                 r = numpy.array((hh[ih],kk[ik],ll[il]),dtype=int)
 
                 rp = (r*P).sum() / p2 * P
@@ -1573,7 +1573,7 @@ def mare_calc(descriptor,H,K,L,HMAX,KMAX,LMAX,FHEDGE,DISPLAY,lambda1,deltalambda
                     braggAngleUmweg = outInt["THETA"] * 180 / numpy.pi
                     beta = alpha - alpha0
                     y3 = 1.0 / numpy.sqrt( (knew / numpy.cos(beta * numpy.pi / 180))**2 + p2new / 4 )
-                    if verbose: print("Bragg angle (for Umweg): %g"%braggAngleUmweg)
+                    if verbose: print(("Bragg angle (for Umweg): %g"%braggAngleUmweg))
 
                     theta1 = knew**2 / ((1/lambdas)**2 - p2new / 4)
                     if numpy.abs(theta1[1] > 1):
@@ -1589,7 +1589,7 @@ def mare_calc(descriptor,H,K,L,HMAX,KMAX,LMAX,FHEDGE,DISPLAY,lambda1,deltalambda
                     #     ;
                     lambdaIntersec = 1.0 / numpy.sqrt( (knew/numpy.cos((phis-alpha0)*numpy.pi/180))**2+p2new/4 )
 
-                    if verbose: print("lambdaIntersec:  ",repr(lambdaIntersec))
+                    if verbose: print(("lambdaIntersec:  ",repr(lambdaIntersec)))
                     if verbose: print(("d-spacing [A]: %g"%fhInp["dspacing"]))
 
                     braggAngleGlitches = lambdaIntersec[1]/2/fhInp["dspacing"]/1e8
@@ -1599,7 +1599,7 @@ def mare_calc(descriptor,H,K,L,HMAX,KMAX,LMAX,FHEDGE,DISPLAY,lambda1,deltalambda
                     else:
                         braggAngleGlitches = 0
 
-                    if verbose: print("Bragg angle (for Glitches): %g"%braggAngleGlitches)
+                    if verbose: print(("Bragg angle (for Glitches): %g"%braggAngleGlitches))
                     #     ;
                     #     ; print/store results
                     #     ;
@@ -1826,11 +1826,11 @@ if __name__ == "__main__":
     #
     for i in range(12):
         tmp = f1f2_calc(26,[10000.0,22000],F=i)
-        print(">>>>>>>>>>>>>>F=%d, Z=26,f1f2_calc="%i,tmp,tmp.shape )
+        print((">>>>>>>>>>>>>>F=%d, Z=26,f1f2_calc="%i,tmp,tmp.shape ))
 
     for i in range(12):
         # print(">>>>>>>>>>>>>>F=%d, f1f2_calc_mix="%i, f1f2_calc_mix("SiC",[10000.0],F=i,density=3.21))
-        print(">>>>>>>>>>>>>>F=%d, f1f2_calc_mix for H2O="%i, f1f2_calc_mix("H2O",[10000.0],F=i,density=1.0))
+        print((">>>>>>>>>>>>>>F=%d, f1f2_calc_mix for H2O="%i, f1f2_calc_mix("H2O",[10000.0],F=i,density=1.0)))
 
 
 

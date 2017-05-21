@@ -11,7 +11,7 @@ try:
     from matplotlib import figure as matfig
     import pylab
 except ImportError:
-    print(sys.exc_info()[1])
+    print((sys.exc_info()[1]))
     pass
 
 
@@ -56,7 +56,7 @@ def xoppy_doc(app):
 
     filename1 = os.path.join(home_doc,app+'.txt')
 
-    print("xoppy_doc: opening file %s"%filename1)
+    print(("xoppy_doc: opening file %s"%filename1))
     if sys.platform == 'darwin':
         command = "'open -a TextEdit "+filename1+" &'"
     elif sys.platform == 'linux':

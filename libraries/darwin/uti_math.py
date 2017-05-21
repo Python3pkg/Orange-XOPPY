@@ -3,7 +3,7 @@
 # v 0.01
 #############################################################################
 
-from __future__ import print_function #Python 2.7 compatibility
+ #Python 2.7 compatibility
 from array import *
 from math import *
 #from copy import *

@@ -5,7 +5,7 @@ import os
 def read_json(json_name):
     json_text = open(json_name).read()
     json_dict = eval(json_text)
-    json = sorted(json_dict.items(),
+    json = sorted(list(json_dict.items()),
                   key=lambda x: json_text.index('"{}"'.format(x[0])))
     #print(json)
     #json_lowercase = dict((k.lower(), v) for k, v in json.iteritems())
@@ -101,11 +101,11 @@ def main():
     py_name =  base + ".py"
     calc_name = "xoppy_calc_template.py"
     if os.path.exists(py_name):
-        print("file overwritten: "+py_name+"\n")
+        print(("file overwritten: "+py_name+"\n"))
     else:
-        print("file written: "+py_name+"\n")
+        print(("file written: "+py_name+"\n"))
     if os.path.exists(calc_name):
-        print("appended to file: "+calc_name+"\n")
+        print(("appended to file: "+calc_name+"\n"))
 
     json = read_json(json_name)
     widget_name = base
